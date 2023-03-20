@@ -1,10 +1,11 @@
 ﻿<Page
-    x:Class="BeatlesApp.Pages.PersonInfo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BeatlesApp.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Windows.UI.Xaml.Controls.Maps"
+    x:Class="BeatlesApp.Pages.PersonInfo"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -13,11 +14,53 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
-        <StackPanel>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--Small Window-->
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainColumn.(Grid.Column)" Value="0" />
+                        <Setter Target="InfoColumn.(Grid.Column)" Value="0" />
+
+                        <Setter Target="MainColumn.(Grid.Row)" Value="1" />
+                        <Setter Target="InfoColumn.(Grid.Row)" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <!--Large Window-->
+                        <AdaptiveTrigger MinWindowWidth="720"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="MainColumn.(Grid.Column)" Value="0" />
+                        <Setter Target="InfoColumn.(Grid.Column)" Value="1" />
+
+                        <Setter Target="MainColumn.(Grid.Row)" Value="0" />
+                        <Setter Target="InfoColumn.(Grid.Row)" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel x:Name="MainColumn">
             <TextBlock Text="Whaddup" />
+            <Custom:MapControl x:Name="MapLocation" Height="375"/>
         </StackPanel>
-        <StackPanel Grid.Column="1">
-            <TextBlock x:Name="TextBlockName" Text="The Bro" />
+        <StackPanel x:Name="InfoColumn" Padding="20" Grid.Column="1">
+            <Border CornerRadius="100" Margin="10">
+                <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/Paul/paulmccartney.png" Width="200" HorizontalAlignment="Center" />
+            </Border>
+            <TextBlock x:Name="TextBlockName" Text="Sir James Paul McCartney CH MBE" />
         </StackPanel>
     </Grid>
 </Page>

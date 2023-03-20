@@ -17,45 +17,21 @@
             <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
                 <TextBlock Text="Band Members" FontSize="24" FontWeight="Bold" Foreground="White"/>
             </StackPanel>
-            <GridView x:Name="MembersGridView">
-                <StackPanel Margin="5" CornerRadius="4" Tapped="JohnTapped">
-                    <StackPanel.Background>
-                        <AcrylicBrush/>
-                    </StackPanel.Background>
-                    <Border CornerRadius="3" Margin="10">
-                        <Image Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
-                        </Border>
-                    <TextBlock Text="John Lennon" Foreground="Black" TextAlignment="Center" FontSize="18" Margin="0,0,0,10" FontWeight="SemiBold"/>
-                    </StackPanel>
-                <StackPanel Margin="5" CornerRadius="4">
-                    <StackPanel.Background>
-                        <AcrylicBrush/>
-                    </StackPanel.Background>
-                    <Border CornerRadius="3" Margin="10">
-                        <Image Source="/Assets/Images/TheBeatles/Paul/paulmccartney.png" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
-                        </Border>
-                    <TextBlock Text="Paul McCartney" Foreground="Black" TextAlignment="Center" FontSize="18" Margin="0,0,0,10" FontWeight="SemiBold"/>
-                    </StackPanel>
 
-                <StackPanel Margin="5" CornerRadius="4">
-                    <StackPanel.Background>
-                        <AcrylicBrush/>
-                    </StackPanel.Background>
-                    <Border CornerRadius="3" Margin="10">
-                        <Image Source="/Assets/Images/TheBeatles/George/georgeharrison.jpg" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
-                        </Border>
-                    <TextBlock Text="George Harrison" Foreground="Black" TextAlignment="Center" FontSize="18" Margin="0,0,0,10" FontWeight="SemiBold"/>
-                    </StackPanel>
-
-                <StackPanel Margin="5" CornerRadius="4">
-                    <StackPanel.Background>
-                        <AcrylicBrush/>
-                    </StackPanel.Background>
-                    <Border CornerRadius="3" Margin="10">
-                        <Image Source="/Assets/Images/TheBeatles/Ringo/ringostarr.jpg" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
-                    </Border>
-                    <TextBlock Text="Ringo Starr" Foreground="Black" TextAlignment="Center" FontSize="18" Margin="0,0,0,10" FontWeight="SemiBold"/>
-                </StackPanel>
+            <GridView x:Name="MembersGridView" ItemsSource="{x:Bind local:App.theBeatles.Members}">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Musician">
+                        <StackPanel Margin="5" CornerRadius="4" Tapped="MembersGridView_ItemClick">
+                            <StackPanel.Background>
+                                <AcrylicBrush/>
+                            </StackPanel.Background>
+                            <Border CornerRadius="3" Margin="10">
+                                <Image Source="{x:Bind ProfileImage}" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock Text="{x:Bind FirstLastName}" Foreground="Black" TextAlignment="Center" FontSize="18" Margin="0,0,0,10" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
             </GridView>
 
             <StackPanel CornerRadius="4" Background="#FFE4E4E4" Margin="0 10" Padding="10">

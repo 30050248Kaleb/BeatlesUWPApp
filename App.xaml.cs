@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,7 +23,16 @@ namespace BeatlesApp
     /// </summary>
     sealed partial class App : Application
     {
-        public static Band theBeatles = new Band { Name="The Beatles", Members=new List<Musician> { new Musician("John", "Lennon", "John Winston Ono Lennon", ""), new Musician("Paul", "McCartney", "Sir James Paul McCartney CH MBE", ""), new Musician("George", "Harrison", "George Harrison MBE", ""), new Musician("Ringo", "Starr", "Sir Richard Starkey MBE", "") } };
+
+        public static Musician JohnLennon = new Musician("John", "Lennon", "John Winston Ono Lennon", "/Assets/Images/TheBeatles/John/johnlennon.jpg") { Location = new BasicGeoposition() { Longitude = 53.37725363118656, Latitude = -2.8813516555309864 } };
+        public static Musician PaulMcCartney = new Musician("Paul", "McCartney", "Sir James Paul McCartney CH MBE", "/Assets/Images/TheBeatles/Paul/paulmccartney.png");
+        public static Musician GeorgeHarrsion = new Musician("George", "Harrison", "George Harrison MBE", "/Assets/Images/TheBeatles/George/georgeharrison.jpg");
+        public static Musician RingoStarr = new Musician("Ringo", "Starr", "Sir Richard Starkey MBE", "/Assets/Images/TheBeatles/Ringo/ringostarr.jpg");
+
+        public static Band theBeatles = new Band 
+        { 
+            Name="The Beatles"
+        };
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -31,6 +41,11 @@ namespace BeatlesApp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            JohnLennon.AddToBand(theBeatles);
+            PaulMcCartney.AddToBand(theBeatles);
+            GeorgeHarrsion.AddToBand(theBeatles);
+            RingoStarr.AddToBand(theBeatles);
         }
 
         /// <summary>
