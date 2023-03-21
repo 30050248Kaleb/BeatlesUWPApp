@@ -8,18 +8,7 @@
     x:Class="BeatlesApp.Pages.PersonInfo"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="auto" />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
+    <ScrollViewer>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup>
                 <VisualState>
@@ -30,7 +19,6 @@
                     <VisualState.Setters>
                         <Setter Target="MainColumn.(Grid.Column)" Value="0" />
                         <Setter Target="InfoColumn.(Grid.Column)" Value="0" />
-
                         <Setter Target="MainColumn.(Grid.Row)" Value="1" />
                         <Setter Target="InfoColumn.(Grid.Row)" Value="0" />
                     </VisualState.Setters>
@@ -44,7 +32,6 @@
                     <VisualState.Setters>
                         <Setter Target="MainColumn.(Grid.Column)" Value="0" />
                         <Setter Target="InfoColumn.(Grid.Column)" Value="1" />
-
                         <Setter Target="MainColumn.(Grid.Row)" Value="0" />
                         <Setter Target="InfoColumn.(Grid.Row)" Value="0" />
                     </VisualState.Setters>
@@ -52,15 +39,30 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <StackPanel x:Name="MainColumn">
-            <TextBlock Text="Whaddup" />
-            <Custom:MapControl x:Name="MapLocation" Height="375"/>
-        </StackPanel>
-        <StackPanel x:Name="InfoColumn" Padding="20" Grid.Column="1">
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+        <StackPanel x:Name="InfoColumn" Padding="20" Grid.Column="1" Grid.Row="0">
             <Border CornerRadius="100" Margin="10">
-                <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/Paul/paulmccartney.png" Width="200" HorizontalAlignment="Center" />
+                <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" Width="200" Height="200" HorizontalAlignment="Center" Stretch="UniformToFill" />
             </Border>
-            <TextBlock x:Name="TextBlockName" Text="Sir James Paul McCartney CH MBE" />
+            <TextBlock x:Name="TextBlockName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" />
+            <TextBlock x:Name="TextBlockFullName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" />
         </StackPanel>
-    </Grid>
+
+            <StackPanel x:Name="MainColumn" Grid.Column="0" Grid.Row="0">
+                <TextBlock Text="Whaddup" />
+                <Custom:MapControl x:Name="MapLocation" Height="375" ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl" MapServiceToken="3vdnSk0nyishgv4Ceqzz~mCaMMfLHVPMIgtWAXW34ug~ApvymDs9pkdxGAbVJFhLPNiNupIPq92FcT_e6Ofmu72V8XzaMXbUov-TYUqzn_Lr"/>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </Page>

@@ -32,23 +32,20 @@ namespace BeatlesApp.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             mainCharacter = (Person)e.Parameter; 
-            try
-            {
-                TextBlockName.Text = mainCharacter.FullName;
-            }
-            catch (Exception ex)
-            {
-                TextBlockName.Text = "Error";
-            }
+            SetInformationForPage();
+        }
 
-            try
-            {
-                ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx://" + mainCharacter.ProfileImage, UriKind.RelativeOrAbsolute));
-            }
-            catch (Exception ex)
-            {
+        private void SetInformationForPage()
+        {
 
-            }
+            try { TextBlockName.Text = mainCharacter.FirstLastName; }
+            catch (Exception ex) { TextBlockName.Text = "Error: " + ex; }
+
+            try { TextBlockFullName.Text = mainCharacter.FullName; }
+            catch (Exception ex) { TextBlockName.Text = "Error: " + ex; }
+
+            try { ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx://" + mainCharacter.ProfileImage, UriKind.RelativeOrAbsolute)); }
+            catch (Exception) { ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/logo.png", UriKind.RelativeOrAbsolute)); }
         }
 
 
