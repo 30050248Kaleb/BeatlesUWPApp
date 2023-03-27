@@ -35,15 +35,9 @@ namespace BeatlesApp.Pages
             
         }
 
-        private void JohnTapped(object sender, TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(PersonInfo), App.theBeatles.Members[0]);
-        }
-
         private void MembersGridView_ItemClick(object sender, TappedRoutedEventArgs e)
         {
-
-            Frame.Navigate(typeof(PersonInfo), App.theBeatles.Members[MembersGridView.SelectedIndex]);
+            Frame.Navigate(typeof(MusicianInfo), App.theBeatles.Members[MembersGridView.SelectedIndex]);
         }
     }
 }

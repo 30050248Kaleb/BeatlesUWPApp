@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Networking;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace BeatlesApp
 {
@@ -36,7 +37,8 @@ namespace BeatlesApp
 
     public class Musician : Person
     {
-        public List<Band> Bands { get; } = new List<Band>();
+        public List<Band> Bands { get; set; } = new List<Band>();
+        public List<Album> Albums { get; set; } = new List<Album>();
 
 
         public Musician(string fname, string lname, string fullname, string profImage) : base(fname, lname, fullname, profImage)
@@ -49,15 +51,43 @@ namespace BeatlesApp
             Bands.Add(band);
             band.Members.Add(this);
         }
+
+        public void AddAlbum(Album album)
+        {
+            Albums.Add(album);
+            album.AlbumArtist = this;
+        }
     }
 
     public class Band
     {
         public string Name { get; set; }
-        public List<Musician> Members { get; } = new List<Musician>();
+        public List<Musician> Members { get; set; } = new List<Musician>();
+        public List<Album> Albums { get; set; } = new List<Album>();
 
         public Band()
         {
+        }
+
+        public void AddAlbum(Album album)
+        {
+            Albums.Add(album);
+            album.AlbumArtist = this;
+        }
+    }
+
+    public class Album
+    {
+        public string Name { get; set; }
+        public string Year { get; set; }
+        public BitmapImage AlbumCover { get; set; }
+        public dynamic AlbumArtist { get; set; }
+
+        public Album(string name, string year, BitmapImage cover)
+        {
+            Name = name;
+            Year = year;
+            AlbumCover = cover;
         }
     }
 }

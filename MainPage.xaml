@@ -1,4 +1,5 @@
-﻿<Page
+﻿<!-- The main page of the app. It is the first page that is loaded when the app is opened. It contains the navigation bar and the frame that the other pages are loaded into. -->
+<Page
     x:Class="BeatlesApp.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
