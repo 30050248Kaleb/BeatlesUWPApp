@@ -56,15 +56,18 @@ namespace BeatlesApp.Pages
 
             try
             {
+                // Get Json for Artist
                 var httpClient = new HttpClient();
                 var requestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={mainCharacter.FirstLastName}&api_key={apiKey}&format=json");
 
-                var json = await httpClient.GetStringAsync(requestUri);
+                var artistInfoJson = await httpClient.GetStringAsync(requestUri);
 
-                dynamic result = JsonConvert.DeserializeObject(json);
+                dynamic result = JsonConvert.DeserializeObject(artistInfoJson);
 
+                // Set About Text
                 try { TextBlockAbout.Text = result.artist.bio.content; }
                 catch (Exception ex) { TextBlockAbout.Text = "Exception " + ex; }
+                // If About Text is too long, minimize it
                 if (TextBlockAbout.ActualHeight > 10)
                 {
                     TextBlockAbout.Height = minimizedAboutHeight;
@@ -75,28 +78,11 @@ namespace BeatlesApp.Pages
                 {
                     ButtonShowMore.Visibility = Visibility.Collapsed;
                 }
-                TextBlockAbout.Text += TextBlockAbout.ActualHeight.ToString();
-                try
-                {
-                    var albums = result.artist.topalbums.album;
-                    mainCharacter.Albums = new List<Album>();
-                    foreach (var album in albums)
-                    {
-                        var albumInfoRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={apiKey}&artist={mainCharacter.FirstLastName}&album={album.name.Value}&format=json");
-                        var bitmap = new BitmapImage(new Uri(album.image.Last.Value.ToString(), UriKind.Absolute));
-
-                        new Album(album.name.Value, "", bitmap);
-                    }
-
-                }
-                catch { }
             }
             catch (Exception)
             {
 
             }
-
-
         }
 
         private void ButtonShowMore_Tapped(object sender, TappedRoutedEventArgs e)

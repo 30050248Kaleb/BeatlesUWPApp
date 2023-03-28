@@ -23,11 +23,12 @@ namespace BeatlesApp
     /// </summary>
     sealed partial class App : Application
     {
+        public static readonly string apiKey = "a03f8addf761480613b779db817e4c0e";
 
-        public static Musician JohnLennon = new Musician("John", "Lennon", "John Winston Ono Lennon", "/Assets/Images/TheBeatles/John/johnlennon.jpg") { Location = new BasicGeoposition() { Longitude = 53.37725363118656, Latitude = -2.8813516555309864 } };
-        public static Musician PaulMcCartney = new Musician("Paul", "McCartney", "Sir James Paul McCartney CH MBE", "/Assets/Images/TheBeatles/Paul/paulmccartney.png");
-        public static Musician GeorgeHarrsion = new Musician("George", "Harrison", "George Harrison MBE", "/Assets/Images/TheBeatles/George/georgeharrison.jpg");
-        public static Musician RingoStarr = new Musician("Ringo", "Starr", "Sir Richard Starkey MBE", "/Assets/Images/TheBeatles/Ringo/ringostarr.jpg");
+        public static Musician JohnLennon = new Musician("John", "Lennon", "John Winston Ono Lennon") { Location = new BasicGeoposition() { Longitude = 53.37725363118656, Latitude = -2.8813516555309864 } };
+        public static Musician PaulMcCartney = new Musician("Paul", "McCartney", "Sir James Paul McCartney CH MBE");
+        public static Musician GeorgeHarrsion = new Musician("George", "Harrison", "George Harrison MBE");
+        public static Musician RingoStarr = new Musician("Ringo", "Starr", "Sir Richard Starkey MBE");
 
         public static Band theBeatles = new Band 
         { 

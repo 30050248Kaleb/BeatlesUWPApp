@@ -72,26 +72,26 @@
                 <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
                     <TextBlock Text="About" FontSize="24" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
-                <TextBlock x:Name="TextBlockAbout" TextWrapping="Wrap" Text="Hi" FontSize="13" Margin="8 0" HorizontalAlignment="Left" Foreground="Black" />
+                <TextBlock x:Name="TextBlockAbout" TextWrapping="Wrap" Text="Loading About Info..." FontSize="13" Margin="8 0" HorizontalAlignment="Left" Foreground="Black" />
                 <Button x:Name="ButtonShowMore" Content="Show More" Foreground="Black" Background="#33B1B1B1" Margin="0 10" Tapped="ButtonShowMore_Tapped" />
                 <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
                     <TextBlock Text="Albums" FontSize="24" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
-                <!--<GridView ItemsSource="{x:Bind mainCharacter.Albums}">
+                <GridView x:Name="AlbumView" ItemsSource="{x:Bind mainCharacter.Albums}">
                     <GridView.ItemTemplate>
                         <DataTemplate x:DataType="local:Album">
-                            <StackPanel Margin="5" CornerRadius="4">
+                            <StackPanel Margin="5" CornerRadius="4" Width="200" Height="200">
                                 <StackPanel.Background>
                                     <AcrylicBrush/>
                                 </StackPanel.Background>
                                 <Border CornerRadius="3" Margin="10">
                                     <Image Source="{x:Bind AlbumCover}" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" />
                                 </Border>
-                                <TextBlock Text="{x:Bind Name}" Foreground="Black" TextAlignment="Center" FontSize="18" Margin="0,0,0,10" FontWeight="SemiBold" />
+                                <TextBlock VerticalAlignment="Center" MaxHeight="50" Text="{x:Bind Name}" TextWrapping="WrapWholeWords" Foreground="Black" TextAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" Margin="10 0" FontWeight="SemiBold" />
                             </StackPanel>
                         </DataTemplate>
                     </GridView.ItemTemplate>
-                </GridView>-->
+                </GridView>
                 
                 <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
                     <TextBlock Text="Location" FontSize="24" FontWeight="Bold" Foreground="White"/>
