@@ -55,7 +55,8 @@ namespace BeatlesApp
 
         public Musician(string fname, string lname, string fullname) : base(fname, lname, fullname)
         {
-            GetPicture();
+            if(ProfileImage == string.Empty)
+                GetPicture();
             GetAlbums();
         }
 
@@ -92,44 +93,48 @@ namespace BeatlesApp
 
         public async void GetAlbums()
         {
-            var httpClient = new HttpClient();
-            var getAlbumsRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist={FirstLastName}&api_key={App.apiKey}&format=json");
-            var artistTopAlbumsJson = await httpClient.GetStringAsync(getAlbumsRequestUri);
-            dynamic topAlbumsResult = JsonConvert.DeserializeObject(artistTopAlbumsJson);
-
-            var albums = topAlbumsResult.topalbums.album;
-            Albums = new ObservableCollection<Album>();
-            foreach (var album in albums)
+            try
             {
-                try
+                var httpClient = new HttpClient();
+                var getAlbumsRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist={FirstLastName}&api_key={App.apiKey}&format=json");
+                var artistTopAlbumsJson = await httpClient.GetStringAsync(getAlbumsRequestUri);
+                dynamic topAlbumsResult = JsonConvert.DeserializeObject(artistTopAlbumsJson);
+
+                var albums = topAlbumsResult.topalbums.album;
+                Albums = new ObservableCollection<Album>();
+                foreach (var album in albums)
                 {
-                    // Album Name
-                    string name = album["name"].ToString();
-
-                    // Encode the album name, incase it has &s in it, to be able to use it in the url
-                    if (album["name"].ToString().Contains("&") || album["name"].ToString().Contains(" "))
-                    {
-                        name = HttpUtility.UrlEncode(name);
-                    }
-                    var albumInfoRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={App.apiKey}&artist={FirstLastName}&album={name}&format=json");
-                    var albumJson = await httpClient.GetStringAsync(albumInfoRequestUri);
-                    dynamic albumResult = JsonConvert.DeserializeObject(albumJson);
-
-                    // Album Cover
                     try
                     {
-                        var bitmap = new BitmapImage(new Uri(albumResult["album"]["image"].Last["#text"].ToString(), UriKind.Absolute));
+                        // Album Name
+                        string name = album["name"].ToString();
 
-                        AddAlbum(new Album(album["name"].ToString(), bitmap, albumResult));
+                        // Encode the album name, incase it has &s in it, to be able to use it in the url
+                        if (album["name"].ToString().Contains("&") || album["name"].ToString().Contains(" "))
+                        {
+                            name = HttpUtility.UrlEncode(name);
+                        }
+                        var albumInfoRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={App.apiKey}&artist={FirstLastName}&album={name}&format=json");
+                        var albumJson = await httpClient.GetStringAsync(albumInfoRequestUri);
+                        dynamic albumResult = JsonConvert.DeserializeObject(albumJson);
+
+                        // Album Cover
+                        try
+                        {
+                            var bitmap = new BitmapImage(new Uri(albumResult["album"]["image"].Last["#text"].ToString(), UriKind.Absolute));
+
+                            AddAlbum(new Album(album["name"].ToString(), bitmap, albumResult));
+                        }
+                        catch (Exception ex)
+                        {
+                            var bitmap = ProfileImage;
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        var bitmap = ProfileImage;
-                    }
+                    catch { }
+
                 }
-                catch { }
-                
             }
+            catch { }
         }
     }
 
@@ -151,44 +156,48 @@ namespace BeatlesApp
 
         public async void GetAlbums()
         {
-            var httpClient = new HttpClient();
-            var getAlbumsRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist={Name}&api_key={App.apiKey}&format=json");
-            var artistTopAlbumsJson = await httpClient.GetStringAsync(getAlbumsRequestUri);
-            dynamic topAlbumsResult = JsonConvert.DeserializeObject(artistTopAlbumsJson);
-
-            var albums = topAlbumsResult.topalbums.album;
-            Albums = new ObservableCollection<Album>();
-            foreach (var album in albums)
+            try
             {
-                try
+                var httpClient = new HttpClient();
+                var getAlbumsRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist={Name}&api_key={App.apiKey}&format=json");
+                var artistTopAlbumsJson = await httpClient.GetStringAsync(getAlbumsRequestUri);
+                dynamic topAlbumsResult = JsonConvert.DeserializeObject(artistTopAlbumsJson);
+
+                var albums = topAlbumsResult.topalbums.album;
+                Albums = new ObservableCollection<Album>();
+                foreach (var album in albums)
                 {
-                    // Album Name
-                    string name = album["name"].ToString();
-
-                    // Encode the album name, incase it has &s in it, to be able to use it in the url
-                    if (album["name"].ToString().Contains("&") || album["name"].ToString().Contains(" "))
-                    {
-                        name = HttpUtility.UrlEncode(name);
-                    }
-                    var albumInfoRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={App.apiKey}&artist={Name}&album={name}&format=json");
-                    var albumJson = await httpClient.GetStringAsync(albumInfoRequestUri);
-                    dynamic albumResult = JsonConvert.DeserializeObject(albumJson);
-
-                    // Album Cover
                     try
                     {
-                        var bitmap = new BitmapImage(new Uri(albumResult["album"]["image"].Last["#text"].ToString(), UriKind.Absolute));
+                        // Album Name
+                        string name = album["name"].ToString();
 
-                        AddAlbum(new Album(album["name"].ToString(), bitmap, albumResult));
+                        // Encode the album name, incase it has &s in it, to be able to use it in the url
+                        if (album["name"].ToString().Contains("&") || album["name"].ToString().Contains(" "))
+                        {
+                            name = HttpUtility.UrlEncode(name);
+                        }
+                        var albumInfoRequestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key={App.apiKey}&artist={Name}&album={name}&format=json");
+                        var albumJson = await httpClient.GetStringAsync(albumInfoRequestUri);
+                        dynamic albumResult = JsonConvert.DeserializeObject(albumJson);
+
+                        // Album Cover
+                        try
+                        {
+                            var bitmap = new BitmapImage(new Uri(albumResult["album"]["image"].Last["#text"].ToString(), UriKind.Absolute));
+
+                            AddAlbum(new Album(album["name"].ToString(), bitmap, albumResult));
+                        }
+                        catch (Exception ex)
+                        {
+                            var bitmap = new BitmapImage(new Uri(""));
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        var bitmap = new BitmapImage(new Uri(""));
-                    }
+                    catch { }
+
                 }
-                catch { }
-
             }
+            catch { }
         }
     }
 

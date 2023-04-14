@@ -1,8 +1,7 @@
 ﻿<Page
-    x:Class="BeatlesApp.Pages.MusicianInfo"
+    x:Class="BeatlesApp.Pages.AlbumInfo"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Custom="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:local="using:BeatlesApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -56,11 +55,11 @@
                 <StackPanel.Background>
                     <AcrylicBrush TintColor="#FFE4E4E4"/>
                 </StackPanel.Background>
-                <Border CornerRadius="100" Margin="10">
+                <Border Margin="10">
                     <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" Width="200" Height="200" HorizontalAlignment="Center" Stretch="UniformToFill" />
                 </Border>
-                <TextBlock x:Name="TextBlockName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" Foreground="Black" />
-                <TextBlock x:Name="TextBlockFullName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" Foreground="Black" />
+                <TextBlock x:Name="TextBlockAlbumName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" Foreground="Black" />
+                <TextBlock x:Name="TextBlockArtistName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" Foreground="Black" />
             </StackPanel>
 
             <!-- The main column of the page. It contains the information about the musician. -->
@@ -77,26 +76,7 @@
                 <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
                     <TextBlock Text="Albums" FontSize="24" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
-                <GridView x:Name="AlbumView" ItemsSource="{x:Bind mainCharacter.Albums}">
-                    <GridView.ItemTemplate>
-                        <DataTemplate x:DataType="local:Album">
-                            <StackPanel Margin="5" CornerRadius="4" Width="200" Height="200" Tapped="AlbumView_ItemClick">
-                                <StackPanel.Background>
-                                    <AcrylicBrush/>
-                                </StackPanel.Background>
-                                <Border CornerRadius="3" Margin="10">
-                                    <Image Source="{x:Bind AlbumCover}" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" />
-                                </Border>
-                                <TextBlock VerticalAlignment="Center" MaxHeight="50" Text="{x:Bind Name}" TextWrapping="WrapWholeWords" Foreground="Black" TextAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" Margin="10 0" FontWeight="SemiBold" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
                 
-                <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
-                    <TextBlock Text="Location" FontSize="24" FontWeight="Bold" Foreground="White"/>
-                </StackPanel>
-                <Custom:MapControl x:Name="MapLocation" Width="400" Margin="8 0" Height="{Binding ElementName=MapLocation, Path=ActualWidth}" ZoomInteractionMode="GestureAndControl" TiltInteractionMode="GestureAndControl" MapServiceToken="3vdnSk0nyishgv4Ceqzz~mCaMMfLHVPMIgtWAXW34ug~ApvymDs9pkdxGAbVJFhLPNiNupIPq92FcT_e6Ofmu72V8XzaMXbUov-TYUqzn_Lr" HorizontalAlignment="Left"/>
             </StackPanel>
 
         </Grid>

@@ -24,48 +24,66 @@ namespace BeatlesApp.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MusicianInfo : Page
+    public sealed partial class AlbumInfo : Page
     {
         string apiKey = "a03f8addf761480613b779db817e4c0e";
         bool isAboutMinimized = false;
         int minimizedAboutHeight = 120;
 
-        Musician mainCharacter;
-        public MusicianInfo()
+        Album mainAlbum;
+        public AlbumInfo()
         {
             this.InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            mainCharacter = (Musician)e.Parameter;
+            mainAlbum = (Album)e.Parameter;
             SetInformationForPage();
         }
 
         private async void SetInformationForPage()
         {
 
-            try { TextBlockName.Text = mainCharacter.FirstLastName; }
-            catch (Exception ex) { TextBlockName.Text = "Error: " + ex; }
+            try { TextBlockAlbumName.Text = mainAlbum.Name; }
+            catch (Exception ex) { TextBlockAlbumName.Text = "Error: " + ex; }
 
-            try { TextBlockFullName.Text = mainCharacter.FullName; }
-            catch (Exception ex) { TextBlockName.Text = "Error: " + ex; }
+            try 
+            { 
+                if(mainAlbum.AlbumArtist is Band)
+                {
+                    TextBlockArtistName.Text = mainAlbum.AlbumArtist.Name;
+                }
+                else
+                {
+                    TextBlockArtistName.Text = mainAlbum.AlbumArtist.FirstLastName;
+                }
+            }
+            catch (Exception ex) { TextBlockArtistName.Text = "Error: " + ex; }
 
-            try { ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx://" + mainCharacter.ProfileImage, UriKind.RelativeOrAbsolute)); }
+            try { ImageProfileImage.Source = mainAlbum.AlbumCover; }
             catch (Exception) { ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/logo.png", UriKind.RelativeOrAbsolute)); }
 
             try
             {
                 // Get Json for Artist
                 var httpClient = new HttpClient();
-                var requestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={mainCharacter.FirstLastName}&api_key={apiKey}&format=json");
+                var requestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={mainAlbum.Name}&api_key={apiKey}&format=json");
 
                 var artistInfoJson = await httpClient.GetStringAsync(requestUri);
 
                 dynamic result = JsonConvert.DeserializeObject(artistInfoJson);
 
                 // Set About Text
-                try { TextBlockAbout.Text = result.artist.bio.content; }
+                try
+                {
+                    TextBlockAbout.Text = "";
+                    var tracks = mainAlbum.AlbumJson["album"]["tracks"];
+                    foreach (var track in tracks)
+                    {
+                        TextBlockAbout.Text = track["name"];
+                    }
+                }
                 catch (Exception ex) { TextBlockAbout.Text = "Exception " + ex; }
                 // If About Text is too long, minimize it
                 if (TextBlockAbout.ActualHeight > 10)
@@ -97,11 +115,6 @@ namespace BeatlesApp.Pages
             }
             isAboutMinimized = !isAboutMinimized;
             ButtonShowMore.Content = isAboutMinimized ? "Show More" : "Show Less";
-        }
-
-        private void AlbumView_ItemClick(object sender, TappedRoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AlbumInfo), mainCharacter.Albums[AlbumView.SelectedIndex]);
         }
     }
 }
