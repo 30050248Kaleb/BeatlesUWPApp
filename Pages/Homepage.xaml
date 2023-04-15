@@ -38,7 +38,7 @@
                 <TextBlock Text="Albums" FontSize="24" FontWeight="Bold" Foreground="#1E1C15"/>
             </StackPanel>
 
-            <GridView x:Name="AlbumView" ItemsSource="{x:Bind theBeatles.Albums}">
+            <GridView x:Name="AlbumView" ItemsSource="{x:Bind theBeatles.Albums}" HorizontalAlignment="Center">
                 <GridView.ItemTemplate>
                     <DataTemplate x:DataType="local:Album">
                         <StackPanel Margin="5" CornerRadius="4" Height="200" Tapped="AlbumView_ItemClick">

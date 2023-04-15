@@ -80,6 +80,9 @@ namespace BeatlesApp.Pages
                             trackList.Add(trackCounter + ". " + track.GetValue("name").ToString());
                             trackCounter++;
                         }
+
+                        trackCounter--;
+                        TextBlockTracklistHeader.Text = "Tracklist (" + trackCounter + " tracks)";
                     }
                     else
                     {

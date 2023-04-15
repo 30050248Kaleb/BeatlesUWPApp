@@ -33,9 +33,6 @@ namespace BeatlesApp.Pages
         public Homepage()
         {
             this.InitializeComponent();
-
-
-            
         }
 
         private void MembersGridView_ItemClick(object sender, TappedRoutedEventArgs e)

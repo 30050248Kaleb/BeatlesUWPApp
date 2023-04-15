@@ -59,8 +59,8 @@
                 <Border Margin="10">
                     <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" Width="200" Height="200" HorizontalAlignment="Center" Stretch="UniformToFill" />
                 </Border>
-                <TextBlock x:Name="TextBlockAlbumName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" Foreground="Black" />
-                <TextBlock x:Name="TextBlockArtistName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" Foreground="Black" />
+                <TextBlock x:Name="TextBlockAlbumName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" MaxWidth="250" TextWrapping="WrapWholeWords" Foreground="Black" />
+                <TextBlock x:Name="TextBlockArtistName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" MaxWidth="250" TextWrapping="WrapWholeWords" Foreground="Black" />
             </StackPanel>
 
             <!-- The main column of the page. It contains the information about the musician. -->
@@ -70,7 +70,7 @@
                 </StackPanel.Background>
 
                 <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
-                    <TextBlock Text="Tracklist" FontSize="24" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock x:Name="TextBlockTracklistHeader" Text="Tracklist" FontSize="24" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
                 <TextBlock x:Name="TextBlockTracks" TextWrapping="Wrap" Text="Loading Tracklist..." FontSize="13" Margin="8 0" HorizontalAlignment="Left" Foreground="Black" />
                 <ListView ItemsSource="{x:Bind trackList}">
