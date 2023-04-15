@@ -144,8 +144,10 @@ namespace BeatlesApp
         public List<Musician> Members { get; set; } = new List<Musician>();
         public ObservableCollection<Album> Albums { get; set; } = new ObservableCollection<Album>();
 
-        public Band()
+        public Band(string name)
         {
+            Name = name;
+            GetAlbums();
         }
 
         public void AddAlbum(Album album)

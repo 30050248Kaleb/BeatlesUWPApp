@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -14,6 +16,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,7 +28,7 @@ namespace BeatlesApp.Pages
     /// </summary>
     public sealed partial class Homepage : Page
     {
-        List<Musician> musicians = new List<Musician>();
+        Band theBeatles = App.theBeatles;
 
         public Homepage()
         {
@@ -39,5 +42,12 @@ namespace BeatlesApp.Pages
         {
             Frame.Navigate(typeof(MusicianInfo), App.theBeatles.Members[MembersGridView.SelectedIndex]);
         }
+
+        private void AlbumView_ItemClick(object sender, TappedRoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AlbumInfo), theBeatles.Albums[AlbumView.SelectedIndex]);
+        }
+
+        
     }
 }

@@ -38,6 +38,22 @@
                 <TextBlock Text="Albums" FontSize="24" FontWeight="Bold" Foreground="#1E1C15"/>
             </StackPanel>
 
+            <GridView x:Name="AlbumView" ItemsSource="{x:Bind theBeatles.Albums}">
+                <GridView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Album">
+                        <StackPanel Margin="5" CornerRadius="4" Height="200" Tapped="AlbumView_ItemClick">
+                            <StackPanel.Background>
+                                <AcrylicBrush/>
+                            </StackPanel.Background>
+                            <Border CornerRadius="3" Margin="10">
+                                <Image Source="{x:Bind AlbumCover}" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" />
+                            </Border>
+                            <TextBlock VerticalAlignment="Center" MaxHeight="50" MaxWidth="150" Text="{x:Bind Name}" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" Margin="10 0" FontWeight="SemiBold" />
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+            </GridView>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

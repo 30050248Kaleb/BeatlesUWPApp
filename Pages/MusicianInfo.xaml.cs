@@ -26,7 +26,6 @@ namespace BeatlesApp.Pages
     /// </summary>
     public sealed partial class MusicianInfo : Page
     {
-        string apiKey = "a03f8addf761480613b779db817e4c0e";
         bool isAboutMinimized = false;
         int minimizedAboutHeight = 120;
 
@@ -58,7 +57,7 @@ namespace BeatlesApp.Pages
             {
                 // Get Json for Artist
                 var httpClient = new HttpClient();
-                var requestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={mainCharacter.FirstLastName}&api_key={apiKey}&format=json");
+                var requestUri = new Uri($"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist={mainCharacter.FirstLastName}&api_key={App.apiKey}&format=json");
 
                 var artistInfoJson = await httpClient.GetStringAsync(requestUri);
 
