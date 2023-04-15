@@ -42,11 +42,31 @@ namespace BeatlesApp
             }
         }
 
-        private void Page2NavItemTapped(object sender, TappedRoutedEventArgs e)
+        private void JohnNavItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            if (MainFrame.SourcePageType != typeof(Homepage))
+            MainFrame.Navigate(typeof(MusicianInfo), App.theBeatles.Members[0]);
+        }
+
+        private void PaulNavItemTapped(object sender, TappedRoutedEventArgs e)
+        {
+            MainFrame.Navigate(typeof(MusicianInfo), App.theBeatles.Members[1]);
+        }
+
+        private void GeorgeNavItemTapped(object sender, TappedRoutedEventArgs e)
+        {
+                MainFrame.Navigate(typeof(MusicianInfo), App.theBeatles.Members[2]);
+        }
+
+        private void RingoNavItemTapped(object sender, TappedRoutedEventArgs e)
+        {
+                MainFrame.Navigate(typeof(MusicianInfo), App.theBeatles.Members[3]);
+        }
+
+        private void Navbar_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+        {
+            if (Window.Current.Bounds.Width < 720) // Check if the width is less than 720 (mobile view width)
             {
-                MainFrame.Navigate(typeof(Homepage));
+                Navbar.IsPaneOpen = false; // Collapse the NavigationView
             }
         }
 
@@ -63,6 +83,30 @@ namespace BeatlesApp
         private void ChangeSizeXboxTapped(object sender, TappedRoutedEventArgs e)
         {
             ApplicationView.GetForCurrentView().TryResizeView(new Size(976, 538));
+        }
+
+        private void MainFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                // Enable the back button
+                Navbar.IsBackButtonVisible = NavigationViewBackButtonVisible.Visible;
+                Navbar.IsBackEnabled = true;
+            }
+            else
+            {
+                // Disable the back button
+                Navbar.IsBackButtonVisible = NavigationViewBackButtonVisible.Collapsed;
+                Navbar.IsBackEnabled = false;
+            }
+        }
+
+        private void Navbar_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        {
+            if (MainFrame.CanGoBack)
+            {
+                MainFrame.GoBack();
+            }
         }
     }
 }

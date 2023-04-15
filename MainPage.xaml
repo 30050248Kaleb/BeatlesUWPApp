@@ -10,11 +10,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <NavigationView x:Name="Navbar">
+        <NavigationView x:Name="Navbar" SelectionChanged="Navbar_SelectionChanged" BackRequested="Navbar_BackRequested">
             <NavigationView.MenuItems>
-                <NavigationViewItemHeader Content="Pages" />
                 <NavigationViewItem Icon="Home" Content="Home" IsSelected="True" Tapped="Page1NavItemTapped" />
-                <NavigationViewItem Icon="Target" Content="Connect Four" Tapped="Page2NavItemTapped" />
+                <NavigationViewItemHeader Content="Beatles" />
+                <NavigationViewItem Icon="Audio" Content="John Lennon" Tapped="JohnNavItemTapped" />
+                <NavigationViewItem Icon="Audio" Content="Paul McCartney" Tapped="PaulNavItemTapped" />
+                <NavigationViewItem Icon="Audio" Content="George Harrison" Tapped="GeorgeNavItemTapped" />
+                <NavigationViewItem Icon="Audio" Content="Ringo Starr" Tapped="RingoNavItemTapped" />
                 <NavigationViewItemSeparator/>
                 <NavigationViewItemHeader Content="Device Sizes" />
                 <NavigationViewItem Icon="CellPhone" Content="Phone" Tapped="ChangeSizePhoneTapped" SelectsOnInvoked="False"/>
@@ -22,7 +25,7 @@
                 <NavigationViewItem Icon="XboxOneConsole" Content="XBOX" Tapped="ChangeSizeXboxTapped" SelectsOnInvoked="False"/>
             </NavigationView.MenuItems>
 
-            <Frame x:Name="MainFrame" />
+            <Frame x:Name="MainFrame" Navigated="MainFrame_Navigated" />
         </NavigationView>
     </Grid>
 </Page>

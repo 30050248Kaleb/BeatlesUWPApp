@@ -56,8 +56,8 @@
                 <StackPanel.Background>
                     <AcrylicBrush TintColor="#FFE4E4E4"/>
                 </StackPanel.Background>
-                <Border CornerRadius="100" Margin="10">
-                    <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" Width="200" Height="200" HorizontalAlignment="Center" Stretch="UniformToFill" />
+                <Border CornerRadius="100" Margin="10" Width="200" Height="200">
+                    <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" HorizontalAlignment="Center" Stretch="UniformToFill" />
                 </Border>
                 <TextBlock x:Name="TextBlockName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" Foreground="Black" />
                 <TextBlock x:Name="TextBlockFullName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" Foreground="Black" />

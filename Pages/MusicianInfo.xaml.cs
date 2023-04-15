@@ -39,6 +39,10 @@ namespace BeatlesApp.Pages
         {
             mainCharacter = (Musician)e.Parameter;
             SetInformationForPage();
+            if (mainCharacter.FirstLastName == "Ringo Starr")
+            {
+                ShowRingoPopup();
+            }
         }
 
         private async void SetInformationForPage()
@@ -101,6 +105,25 @@ namespace BeatlesApp.Pages
         private void AlbumView_ItemClick(object sender, TappedRoutedEventArgs e)
         {
             Frame.Navigate(typeof(AlbumInfo), mainCharacter.Albums[AlbumView.SelectedIndex]);
+        }
+
+        // Generated with ChatGPT
+        private async void ShowRingoPopup()
+        {
+            ContentDialog ringoDialog = new ContentDialog()
+            {
+                Title = "Ringo's Serious Message ✌🕊📢",
+                Content = "✌🕊☮💖💖Peace and love✌🕊☮💖💖. ✌🕊☮💖💖Peace and love✌🕊☮💖💖. I want to tell you ☝🫵👄, after the 20th of October 📅, do not send fan mail 📩 to any address 📭 that you have. Nothing will be signed 🚫📝 after the 20th of October 📅. If that has a date 📆 on the envelope 📫, it's gonna be tossed 🗑. I'm ⚠warning you with peace and love💥🚨💕🙏❤💖☮, but I have too much to do 🤚🙅‍♂, so no more fan mail 📩. Thank you 👋💖👍, thank you 👋💖👍. And no objects 📌📏🖊 to be signed 🚫📝. Anyway, ✌🕊☮💖💖peace and love✌🕊☮💖💖.",
+                CloseButtonText = "OK"
+            };
+
+            try
+            {
+                await ringoDialog.ShowAsync();
+            }
+            catch
+            {
+            }
         }
     }
 }
