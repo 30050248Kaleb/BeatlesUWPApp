@@ -48,7 +48,7 @@
                             <Border CornerRadius="3" Margin="10">
                                 <Image Source="{x:Bind AlbumCover}" Width="130" Height="130" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" />
                             </Border>
-                            <TextBlock VerticalAlignment="Center" MaxHeight="50" MaxWidth="150" Text="{x:Bind Name}" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" Margin="10 0" FontWeight="SemiBold" />
+                            <TextBlock VerticalAlignment="Center" MaxHeight="50" MaxWidth="130" Text="{x:Bind Name}" TextWrapping="Wrap" Foreground="Black" TextAlignment="Center" FontSize="16" TextTrimming="CharacterEllipsis" Margin="10 0" FontWeight="SemiBold" />
                         </StackPanel>
                     </DataTemplate>
                 </GridView.ItemTemplate>

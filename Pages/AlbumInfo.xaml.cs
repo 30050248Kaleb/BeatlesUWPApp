@@ -29,6 +29,7 @@ namespace BeatlesApp.Pages
     public sealed partial class AlbumInfo : Page
     {
         Album mainAlbum;
+        List<string> trackList = new List<string>();
         public AlbumInfo()
         {
             this.InitializeComponent();
@@ -73,18 +74,24 @@ namespace BeatlesApp.Pages
                     if (tracks != null)
                     {
                         TextBlockTracks.Visibility = Visibility.Collapsed;
+                        int trackCounter = 1;
                         foreach (JObject track in tracks)
                         {
-                            TextBlockTracks.Text += track.GetValue("name").ToString();
-                            TextBlockTracks.Text += "\n";
+                            trackList.Add(trackCounter + ". " + track.GetValue("name").ToString());
+                            trackCounter++;
                         }
                     }
                     else
                     {
                         TextBlockTracks.Text = "No tracks found";
+                        TextBlockTracks.Visibility = Visibility.Visible;
                     }
                 }
-                catch (Exception ex) { TextBlockTracks.Text = "Exception " + ex; }
+                catch (Exception ex)
+                {
+                    TextBlockTracks.Text = "No tracks found";
+                    TextBlockTracks.Visibility = Visibility.Visible;
+                }
             }
             catch (Exception)
             {

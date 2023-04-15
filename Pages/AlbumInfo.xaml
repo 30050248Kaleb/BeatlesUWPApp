@@ -5,6 +5,7 @@
     xmlns:local="using:BeatlesApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:system="using:System"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -72,7 +73,13 @@
                     <TextBlock Text="Tracklist" FontSize="24" FontWeight="Bold" Foreground="White"/>
                 </StackPanel>
                 <TextBlock x:Name="TextBlockTracks" TextWrapping="Wrap" Text="Loading Tracklist..." FontSize="13" Margin="8 0" HorizontalAlignment="Left" Foreground="Black" />
-                
+                <ListView ItemsSource="{x:Bind trackList}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="system:String">
+                            <TextBlock Text="{x:Bind}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
 
         </Grid>
