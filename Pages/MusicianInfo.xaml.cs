@@ -9,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -56,6 +57,20 @@ namespace BeatlesApp.Pages
 
             try { ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx://" + mainCharacter.ProfileImage, UriKind.RelativeOrAbsolute)); }
             catch (Exception) { ImageProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/Images/logo.png", UriKind.RelativeOrAbsolute)); }
+
+            try
+            {
+                if (mainCharacter.Location != null)
+                {
+                    await MapLocation.TrySetSceneAsync(MapScene.CreateFromLocation(mainCharacter.Location));
+                    MapLocation.Style = MapStyle.AerialWithRoads;
+                    MapLocation.Visibility = Visibility.Visible;
+                }
+            }
+            catch
+            {
+                MapLocation.Visibility = Visibility.Collapsed;
+            }
 
             try
             {

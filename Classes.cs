@@ -22,7 +22,7 @@ namespace BeatlesApp
         public string FullName { get; set; }
         public string ProfileImage { get; set; }
 
-        public BasicGeoposition Location { get; set; }
+        public Geopoint Location { get; set; }
 
         public string FirstLastName
         {

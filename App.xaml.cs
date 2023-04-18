@@ -25,10 +25,10 @@ namespace BeatlesApp
     {
         public static readonly string apiKey = "a03f8addf761480613b779db817e4c0e";
 
-        public static Musician JohnLennon = new Musician("John", "Lennon", "John Winston Ono Lennon") { ProfileImage = "/Assets/Images/TheBeatles/John/johnlennon.jpg", Location = new BasicGeoposition() { Longitude = 53.37725363118656, Latitude = -2.8813516555309864 } };
-        public static Musician PaulMcCartney = new Musician("Paul", "McCartney", "Sir James Paul McCartney CH MBE") { ProfileImage = "/Assets/Images/TheBeatles/Paul/paulmccartney.png" };
-        public static Musician GeorgeHarrison = new Musician("George", "Harrison", "George Harrison MBE") { ProfileImage = "/Assets/Images/TheBeatles/George/georgeharrison.jpg" };
-        public static Musician RingoStarr = new Musician("Ringo", "Starr", "Sir Richard Starkey MBE") { ProfileImage = "/Assets/Images/TheBeatles/Ringo/ringostarr.jpg" };
+        public static Musician JohnLennon = new Musician("John", "Lennon", "John Winston Ono Lennon") { ProfileImage = "/Assets/Images/TheBeatles/John/johnlennon.jpg", Location = new Geopoint(new BasicGeoposition() { Latitude = 53.3771333, Longitude = -2.8816399 }) };
+        public static Musician PaulMcCartney = new Musician("Paul", "McCartney", "Sir James Paul McCartney CH MBE") { ProfileImage = "/Assets/Images/TheBeatles/Paul/paulmccartney.png", Location = new Geopoint(new BasicGeoposition() { Latitude = 53.36967, Longitude = -2.89788 }) };
+        public static Musician GeorgeHarrison = new Musician("George", "Harrison", "George Harrison MBE") { ProfileImage = "/Assets/Images/TheBeatles/George/georgeharrison.jpg", Location = new Geopoint(new BasicGeoposition() { Latitude = 53.342955, Longitude = -2.836618 }) };
+        public static Musician RingoStarr = new Musician("Ringo", "Starr", "Sir Richard Starkey MBE") { ProfileImage = "/Assets/Images/TheBeatles/Ringo/ringostarr.jpg", Location = new Geopoint(new BasicGeoposition() { Latitude = 53.389102, Longitude = -2.961266 }) };
 
         public static Band theBeatles = new Band("The Beatles");
         /// <summary>
