@@ -44,7 +44,5 @@ namespace BeatlesApp.Pages
         {
             Frame.Navigate(typeof(AlbumInfo), theBeatles.Albums[AlbumView.SelectedIndex]);
         }
-
-        
     }
 }

@@ -41,7 +41,7 @@ namespace BeatlesApp.Pages
             SetInformationForPage();
         }
 
-        private async void SetInformationForPage()
+        private void SetInformationForPage()
         {
             TextBlockTracks.Text = "Loading tracks...";
             TextBlockTracks.Visibility = Visibility.Visible;
@@ -90,13 +90,13 @@ namespace BeatlesApp.Pages
                         TextBlockTracks.Visibility = Visibility.Visible;
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
                     TextBlockTracks.Text = "No tracks found";
                     TextBlockTracks.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception)
+            catch
             {
 
             }

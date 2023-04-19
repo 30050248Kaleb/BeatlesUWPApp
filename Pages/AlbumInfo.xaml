@@ -59,8 +59,8 @@
                 <Border Margin="10">
                     <Image x:Name="ImageProfileImage" Source="/Assets/Images/TheBeatles/John/johnlennon.jpg" Width="200" Height="200" HorizontalAlignment="Center" Stretch="UniformToFill" />
                 </Border>
-                <TextBlock x:Name="TextBlockAlbumName" Text="Paul McCartney" FontWeight="Bold" TextAlignment="Center" FontSize="16" MaxWidth="250" TextWrapping="WrapWholeWords" Foreground="Black" />
-                <TextBlock x:Name="TextBlockArtistName" Text="Sir James Paul McCartney CH MBE" TextAlignment="Center" FontSize="13" MaxWidth="250" TextWrapping="WrapWholeWords" Foreground="Black" />
+                <TextBlock x:Name="TextBlockAlbumName" Text="Album Name" FontWeight="Bold" TextAlignment="Center" FontSize="16" MaxWidth="250" TextWrapping="WrapWholeWords" Foreground="Black" />
+                <TextBlock x:Name="TextBlockArtistName" Text="Album Artist" TextAlignment="Center" FontSize="13" MaxWidth="250" TextWrapping="WrapWholeWords" Foreground="Black" />
             </StackPanel>
 
             <!-- The main column of the page. It contains the information about the musician. -->

@@ -10,8 +10,8 @@
         <AcrylicBrush TintColor="#E5FFFFFF" BackgroundSource="HostBackdrop" FallbackColor="White"/>
     </Page.Background>
     <ScrollViewer>
-        <StackPanel Margin="20,50">
-            <Image Source="/Assets/Images/logo.png" Stretch="Uniform" Height="150" Margin="15" />
+        <StackPanel Margin="20">
+            <Image Source="/Assets/Images/logo.png" Stretch="Uniform" Height="50" Margin="15" />
             <TextBlock Text="The Beatles Fan App" FontSize="32" FontFamily="Arial Black" Foreground="Black" FontWeight="Bold"/>
 
             <StackPanel CornerRadius="4" Background="Black" Margin="0 10" Padding="10">
@@ -34,7 +34,7 @@
                 </GridView.ItemTemplate>
             </GridView>
 
-            <StackPanel CornerRadius="4" Background="#FFE4E4E4" Margin="0 10" Padding="10">
+            <StackPanel CornerRadius="4" Background="#FFF3F3F3" Margin="0 10" Padding="10">
                 <TextBlock Text="Albums" FontSize="24" FontWeight="Bold" Foreground="#1E1C15"/>
             </StackPanel>
 

@@ -125,7 +125,7 @@ namespace BeatlesApp
 
                             AddAlbum(new Album(album["name"].ToString(), bitmap, albumResult));
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             var bitmap = ProfileImage;
                         }
@@ -190,7 +190,7 @@ namespace BeatlesApp
 
                             AddAlbum(new Album(album["name"].ToString(), bitmap, albumResult));
                         }
-                        catch (Exception ex)
+                        catch
                         {
                             var bitmap = new BitmapImage(new Uri(""));
                         }
