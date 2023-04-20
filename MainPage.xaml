@@ -10,7 +10,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <NavigationView x:Name="Navbar" SelectionChanged="Navbar_SelectionChanged" BackRequested="Navbar_BackRequested">
+        <NavigationView x:Name="Navbar" IsSettingsVisible="False" SelectionChanged="Navbar_SelectionChanged" BackRequested="Navbar_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" IsSelected="True" Tapped="Page1NavItemTapped" />
                 <NavigationViewItemHeader Content="Beatles" />
