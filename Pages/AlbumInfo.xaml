@@ -76,7 +76,7 @@
                 <ListView ItemsSource="{x:Bind trackList}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="system:String">
-                            <TextBlock Text="{x:Bind}" />
+                            <TextBlock Text="{x:Bind}" Foreground="Black" />
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
